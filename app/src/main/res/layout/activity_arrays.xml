@@ -18,10 +18,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:text="Enter Array 1:"
+            android:paddingRight="30dp"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:layout_gravity="end"
+            android:id="@+id/entryTextView"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text=""
             android:paddingRight="30dp"
             android:layout_weight="1"
-            android:textSize="28sp"
+            android:textSize="20sp"
             android:layout_gravity="end"
             android:id="@+id/workingsTextView"/>
         <TextView
@@ -32,8 +42,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text=""
-            android:textStyle="bold"
-            android:textSize="35sp"
+            android:textSize="38sp"
             android:layout_gravity="right"
             android:id="@+id/resultsTextView"/>
 
@@ -58,44 +67,24 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.1"
-                android:text="\n"
-                tools:ignore="Suspicious0dp" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_weight="0.1"
                 android:text="\n"
                 tools:ignore="Suspicious0dp" />
+
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
+                android:layout_width="9dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/round_orange"
-                android:onClick="historyOnClick"
-                android:textSize="@dimen/calcButtonTextSize"
+                android:background="@drawable/round_red"
+                android:onClick="clearOnClick"
+                android:text="C"
                 android:textColor="@color/white"
-                android:text="H"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:text="\n"
-                tools:ignore="Suspicious0dp" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:onClick="changeOnClick"
-                android:layout_weight="1"
-                android:background="@drawable/round_orange"
-                android:textSize="@dimen/calcButtonTextSize"
-                android:textColor="@color/white"
-                android:text="[A]"/>
+                android:textSize="@dimen/calcButtonTextSize" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.1"
+                android:layout_weight="2.2"
                 android:text="\n"
                 tools:ignore="Suspicious0dp" />
 
@@ -122,80 +111,8 @@
             android:layout_weight="0.1"
             android:text="\n"
             tools:ignore="Suspicious0dp" />
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:text="\n"
-                tools:ignore="Suspicious0dp" />
-            
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="clearOnClick"
-                android:background="@drawable/round_red"
-                android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize"
-                android:text="C"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:text="\n"
-                tools:ignore="Suspicious0dp" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/round_orange"
-                android:onClick="bracketsOnClick"
-                android:textSize="@dimen/calcButtonTextSize"
-                android:textColor="@color/white"
-                android:text="()"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:text="\n"
-                tools:ignore="Suspicious0dp" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:onClick="powerOnClick"
-                android:layout_weight="1"
-                android:background="@drawable/round_orange"
-                android:textSize="@dimen/calcButtonTextSize"
-                android:textColor="@color/white"
-                android:text="^"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:text="\n"
-                tools:ignore="Suspicious0dp" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/round_orange"
-                android:onClick="divideOnClick"
-                android:textColor="@color/white"
-                android:textSize="@dimen/calcButtonTextSize"
-                android:text="/"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:text="\n"
-                tools:ignore="Suspicious0dp" />
-            
-        </LinearLayout>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -264,10 +181,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/round_orange"
-                android:onClick="multiplyOnClick"
+                android:onClick="computeOnClick"
                 android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize"
-                android:text="X"/>
+                android:text="="/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -338,15 +255,18 @@
                 android:layout_weight="0.1"
                 android:text="\n"
                 tools:ignore="Suspicious0dp" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:onClick="changearrayOnClick"
                 android:layout_weight="1"
+                android:id="@+id/changearray"
                 android:background="@drawable/round_orange"
-                android:onClick="subtractOnClick"
-                android:textColor="@color/white"
                 android:textSize="@dimen/calcButtonTextSize"
-                android:text="-"/>
+                android:textColor="@color/white"
+                android:text="Next Array"
+                tools:ignore="ExtraText" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -418,15 +338,16 @@
                 android:layout_weight="0.1"
                 android:text="\n"
                 tools:ignore="Suspicious0dp" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/round_orange"
-                android:textColor="@color/white"
-                android:onClick="addOnClick"
+                android:onClick="changeOnClick"
                 android:textSize="@dimen/calcButtonTextSize"
-                android:text="+"/>
+                android:textColor="@color/white"
+                android:text="←"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -487,8 +408,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:background="@drawable/round_rect"
-                android:text="="
-                android:onClick="equalOnClick"
+                android:text="↩"
+                android:onClick="enterOnClick"
                 android:textColor="@color/white"
                 android:textSize="40sp" />
             <TextView
@@ -505,7 +426,7 @@
             android:layout_weight="0.1"
             android:text="\n"
             tools:ignore="Suspicious0dp" />
-        
+
     </LinearLayout>
 
 

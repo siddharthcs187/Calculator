@@ -1,6 +1,8 @@
 package com.example.calculator;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,17 +21,18 @@ public class MainActivity extends AppCompatActivity {
     String workings = "";
     String formula ="";
     String tempFormula = "";
+    DBHelper DB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DB = new DBHelper(this);
         initTextViews();
     }
 
     private void initTextViews() {
         workingsTV = (TextView)findViewById(R.id.workingsTextView);
         resultsTV = (TextView)findViewById(R.id.resultsTextView);
-
     }
     private void setWorkings(String givenValue){
         workings = workings + givenValue;
@@ -45,18 +48,20 @@ public class MainActivity extends AppCompatActivity {
         } catch (ScriptException e) {
             Toast.makeText(this,"Invalid Input", Toast.LENGTH_SHORT).show();
         }
-        if(result!=null)
+        if(result!=null) {
             resultsTV.setText(String.valueOf(result.doubleValue()));
+            Boolean checkhistorydata = DB.inserthistorydata(workings+"="+ result);
+
+        }
         workings= String.valueOf(result);
     }
 
     private void checkForPowerOf() {
         ArrayList<Integer> indexOfPowers = new ArrayList<>();
         for(int i = 0; i<workings.length();i++){
-            if(workings.charAt(i) == '^'){
+            if(workings.charAt(i) == '^')
                 indexOfPowers.add(i);
-
-            }
+        }
             formula = workings;
             tempFormula = workings;
             for(Integer index : indexOfPowers){
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
             formula=tempFormula;
         }
-    }
+
 
     private void changeFormula(Integer index) {
         String numLeft = "";
@@ -84,8 +89,17 @@ public class MainActivity extends AppCompatActivity {
             else
                 break;
         }
+        Log.d("myTag", numLeft);
+        Log.d("myTag", numRight);
+
         StringBuilder leftNumberBuilder = new StringBuilder(numLeft);
         numLeft = leftNumberBuilder.reverse().toString();
+
+        Log.d("myTag", numLeft);
+        Log.d("myTag", numRight);
+
+        resultsTV.setText(numLeft);
+
         String orginal = numLeft + "^" + numRight;
         String changed  = "Math.pow("+numLeft+", "+numRight+")";
         tempFormula = tempFormula.replace(orginal, changed);
@@ -172,11 +186,26 @@ public class MainActivity extends AppCompatActivity {
         setWorkings("2");
     }
 
-    public void threeOnClick(View view) {
-        setWorkings("3");
-    }
+    public void threeOnClick(View view) {setWorkings("3");}
 
     public void addOnClick(View view) {
         setWorkings("+");
     }
+
+    public void backOnClick(View view){
+        int t = workings.length();
+        workings = workings.substring(0, (t-1));
+        workingsTV.setText(workings);
+    }
+
+    public void changeOnClick(View view){
+        Intent intent =new Intent(this, Arrays.class);
+        startActivity(intent);
+    }
+
+    public void historyOnClick(View view){
+        Intent intent =new Intent(this, History.class);
+        startActivity(intent);
+    }
+
 }
